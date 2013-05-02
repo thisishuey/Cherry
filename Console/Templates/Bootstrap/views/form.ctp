@@ -18,7 +18,7 @@
 ?>
 <div id="page-container" class="row-fluid">
 	<div id="sidebar" class="span3">
-		<div class="actions">
+		<div class="actions well sidebar-nav">
 			<ul class="nav nav-list">
 				<li><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
 <?php if (strpos($action, 'add') === false): ?>

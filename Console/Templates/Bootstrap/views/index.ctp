@@ -18,7 +18,7 @@
 ?>
 <div id="page-container" class="row-fluid">
 	<div id="sidebar" class="span3">
-		<div class="actions">
+		<div class="actions well sidebar-nav">
 			<ul class="nav nav-list">
 				<li><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
 			</ul>
@@ -59,8 +59,8 @@
 					</tr>
 				<?php echo "<?php endforeach; ?>\n"; ?>
 			</table>
-			<?php echo "<?php echo \$this->element('paginator/counter'); ?>\n"; ?>
-			<?php echo "<?php echo \$this->element('paginator/navigation'); ?>\n"; ?>
+			<?php echo "<?php echo \$this->element('Bootstrap.paginator/counter'); ?>\n"; ?>
+			<?php echo "<?php echo \$this->element('Bootstrap.paginator/navigation'); ?>\n"; ?>
 		</div>
 	</div>
 </div>
