@@ -15,7 +15,7 @@
 			));
 			echo $this->fetch('meta');
 			echo $this->fetch('css');
-			echo $this->Html->css('/twitter_bootstrap/css/bootstrap-responsive.min');
+			echo $this->Html->css('/bootstrap/css/bootstrap-responsive.min');
 		?>
 		<!--[if lt IE 9]>
 			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
