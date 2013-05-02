@@ -56,7 +56,7 @@
 			<div class="container">
 				<hr>
 				<footer id="footer">
-					<p>&copy; Carpe Telam, LLC <?php echo date('Y'); ?></p>
+					<p class="pull-right">&copy; Carpe Telam, LLC <?php echo date('Y'); ?></p>
 				</footer>
 			</div>
 		</div>
