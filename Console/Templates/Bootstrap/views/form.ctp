@@ -24,10 +24,6 @@
 				<li><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
 <?php if (strpos($action, 'add') !== false): ?>
 				<li class="active"><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
-				<li class="disabled nav-header"><?php echo $singularHumanName; ?> Actions</li>
-				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), '#'); ?>"; ?></li>
-				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), '#'); ?>"; ?></li>
-				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Delete {$singularHumanName}'), '#'); ?>"; ?></li>
 <?php else: ?>
 				<li><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
 				<li class="nav-header"><?php echo $singularHumanName; ?> Actions</li>

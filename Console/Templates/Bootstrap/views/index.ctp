@@ -23,10 +23,6 @@
 				<li class="nav-header">Actions</li>
 				<li class="active"><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
 				<li><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
-				<li class="nav-header"><?php echo $singularHumanName; ?> Actions</li>
-				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), '#'); ?>"; ?></li>
-				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), '#'); ?>"; ?></li>
-				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Delete {$singularHumanName}'), '#'); ?>"; ?></li>
 			</ul>
 		</div>
 	</div>
