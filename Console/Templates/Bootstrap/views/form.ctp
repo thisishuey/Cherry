@@ -16,23 +16,32 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div id="page-container" class="row-fluid">
-	<div id="sidebar" class="span3">
+<div class="row-fluid">
+	<div class="span3">
 		<div class="actions well sidebar-nav">
 			<ul class="nav nav-list">
+				<li class="nav-header">Actions</li>
 				<li><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
-<?php if (strpos($action, 'add') === false): ?>
-				<li><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), array('action' => 'view', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
-				<li><?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), null, __('Are you sure you want to delete # %s?', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
+<?php if (strpos($action, 'add') !== false): ?>
+				<li class="active"><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
+				<li class="disabled nav-header"><?php echo $singularHumanName; ?> Actions</li>
+				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), '#'); ?>"; ?></li>
+				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), '#'); ?>"; ?></li>
+				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Delete {$singularHumanName}'), '#'); ?>"; ?></li>
+<?php else: ?>
 				<li><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
+				<li class="nav-header"><?php echo $singularHumanName; ?> Actions</li>
+				<li><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), array('action' => 'view', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
+				<li class="active"><?php echo '<?php echo $this->Html->link(__(\'Edit ' . $singularHumanName . '\'), array(\'action\' => \'edit\', $this->Form->value(\'' . $modelClass . '.' . $primaryKey . '\'))); ?>'; ?></li>
+				<li><?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), null, __('Are you sure you want to delete # %s?', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
 <?php endif; ?>
 			</ul>
 		</div>
 	</div>
-	<div id="page-content" class="span9">
+	<div class="span9">
 		<div class="<?php echo $pluralVar; ?> form">
 			<h2><?php echo "<?php echo __('" . Inflector::humanize($action) . " {$singularHumanName}'); ?>"; ?></h2>
-			<?php echo "<?php echo \$this->Form->create('{$modelClass}', isset(\$formOptions) ? \$formOptions : null); ?>\n"; ?>
+			<?php echo "<?php echo \$this->Form->create('{$modelClass}', array('class' => 'form-horizontal')); ?>\n"; ?>
 				<fieldset>
 					<legend><?php echo "<?php echo __('{$singularHumanName} Information'); ?>"; ?></legend>
 <?php foreach ($fields as $field): ?>

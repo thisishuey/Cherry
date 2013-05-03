@@ -16,20 +16,23 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div id="page-container" class="row-fluid">
-	<div id="sidebar" class="span3">
+<div class="row-fluid">
+	<div class="span3">
 		<div class="actions well sidebar-nav">
 			<ul class="nav nav-list">
-				<li><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
-				<li><?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>"; ?></li>
-				<li><?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), null, __('Are you sure you want to delete # %s?', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>"; ?></li>
-				<li><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
+				<li class="nav-header">Actions</li>
+				<li><?php echo '<?php echo $this->Html->link(__(\'List ' . $pluralHumanName . '\'), array(\'action\' => \'index\')); ?>'; ?></li>
+				<li><?php echo '<?php echo $this->Html->link(__(\'New ' . $singularHumanName . '\'), array(\'action\' => \'add\')); ?>'; ?></li>
+				<li class="nav-header"><?php echo $singularHumanName; ?> Actions</li>
+				<li class="active"><?php echo '<?php echo $this->Html->link(__(\'View ' . $singularHumanName . '\'), array(\'action\' => \'view\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey . '\'])); ?>'; ?></li>
+				<li><?php echo '<?php echo $this->Html->link(__(\'Edit ' . $singularHumanName . '\'), array(\'action\' => \'edit\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey . '\'])); ?>'; ?></li>
+				<li><?php echo '<?php echo $this->Form->postLink(__(\'Delete ' . $singularHumanName . '\'), array(\'action\' => \'delete\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey .'\']), null, __(\'Are you sure you want to delete # %s?\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey . '\'])); ?>'; ?></li>
 			</ul>
 		</div>
 	</div>
-	<div id="page-content" class="span9">
+	<div class="span9">
 		<div class="<?php echo $pluralVar; ?> view">
-			<h2><?php echo "<?php echo __('{$singularHumanName}'); ?>"; ?></h2>
+			<h2><?php echo '<?php echo __(\'' . $singularHumanName . '\'); ?>'; ?></h2>
 			<dl class="dl-horizontal">
 <?php foreach ($fields as $field): ?>
 <?php $isKey = false; ?>
@@ -37,15 +40,15 @@
 <?php foreach ($associations['belongsTo'] as $alias => $details): ?>
 <?php if ($field === $details['foreignKey']): ?>
 <?php $isKey = true; ?>
-				<dt title="<?php echo "<?php echo __('" . Inflector::humanize(Inflector::underscore($alias)) . "'); ?>"; ?>"><?php echo "<?php echo __('" . Inflector::humanize(Inflector::underscore($alias)) . "'); ?>"; ?></dt>
-				<dd><?php echo "<?php echo \$this->Html->link(\${$singularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}['{$alias}']['{$details['primaryKey']}'])); ?>"; ?>&nbsp;</dd>
+				<dt title="<?php echo '<?php echo __(\'' . Inflector::humanize(Inflector::underscore($alias)) . '\'); ?>'; ?>"><?php echo '<?php echo __(\'' . Inflector::humanize(Inflector::underscore($alias)) . '\'); ?>'; ?></dt>
+				<dd><?php echo '<?php echo $this->Html->link($' . $singularVar . '[\'' . $alias . '\'][\'' . $details['displayField'] . '\'], array(\'controller\' => \'' . $details['controller'] . '\', \'action\' => \'view\', $' . $singularVar . '[\'' . $alias . '\'][\'' . $details['primaryKey'] . '\'])); ?>'; ?>&nbsp;</dd>
 <?php break; ?>
 <?php endif; ?>
 <?php endforeach; ?>
 <?php endif; ?>
 <?php if ($isKey !== true): ?>
-				<dt title="<?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?>"><?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?></dt>
-				<dd><?php echo "<?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>"; ?>&nbsp;</dd>
+				<dt title="<?php echo '<?php echo __(\'' . Inflector::humanize($field) . '\'); ?>'; ?>"><?php echo '<?php echo __(\'' . Inflector::humanize($field) . '\'); ?>'; ?></dt>
+				<dd><?php echo '<?php echo h($' . $singularVar . '[\'' . $modelClass . '\'][\'' . $field . '\']); ?>'; ?>&nbsp;</dd>
 <?php endif; ?>
 <?php endforeach; ?>
 			</dl>

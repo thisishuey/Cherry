@@ -16,15 +16,21 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div id="page-container" class="row-fluid">
-	<div id="sidebar" class="span3">
+<div class="row-fluid">
+	<div class="span3">
 		<div class="actions well sidebar-nav">
 			<ul class="nav nav-list">
+				<li class="nav-header">Actions</li>
+				<li class="active"><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
 				<li><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
+				<li class="nav-header"><?php echo $singularHumanName; ?> Actions</li>
+				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), '#'); ?>"; ?></li>
+				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), '#'); ?>"; ?></li>
+				<li class="disabled"><?php echo "<?php echo \$this->Html->link(__('Delete {$singularHumanName}'), '#'); ?>"; ?></li>
 			</ul>
 		</div>
 	</div>
-	<div id="page-content" class="span9">
+	<div class="span9">
 		<div class="<?php echo $pluralVar; ?> index">
 			<h2><?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?></h2>
 			<table class="table table-striped table-bordered">
