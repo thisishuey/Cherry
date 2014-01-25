@@ -34,7 +34,7 @@
 	</div>
 	<div class="col-md-9 content">
 		<h2><?php echo "<?php echo __('" . Inflector::humanize($action) . " {$singularHumanName}'); ?>"; ?></h2>
-		<?php echo "<?php echo \$this->Form->create('{$modelClass}', array('bootstrap' => 'form-horizontal')); ?>\n"; ?>
+		<?php echo "<?php echo \$this->Form->create('{$modelClass}', array('cherry' => 'form-horizontal')); ?>\n"; ?>
 			<fieldset>
 				<legend><?php echo "<?php echo __('{$singularHumanName} Information'); ?>"; ?></legend>
 <?php foreach ($fields as $field): ?>

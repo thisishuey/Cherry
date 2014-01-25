@@ -4,7 +4,7 @@
 
 	class CherryFormHelper extends FormHelper {
 
-		public $bootstrap = false;
+		public $cherry = false;
 		private $labelCol = 4;
 		private $inputCol = 8;
 
@@ -14,15 +14,15 @@
 				$options['role'] = 'form';
 			}
 
-			if (isset($options['bootstrap'])) {
-				$this->bootstrap = $options['bootstrap'];
-				unset($options['bootstrap']);
+			if (isset($options['cherry'])) {
+				$this->cherry = $options['cherry'];
+				unset($options['cherry']);
 			} else {
-				$this->bootstrap = false;
+				$this->cherry = false;
 			}
 
-			if ($this->bootstrap !== true && $this->bootstrap !== false && !isset($options['class'])) {
-				$options['class'] = $this->bootstrap;
+			if ($this->cherry !== true && $this->cherry !== false && !isset($options['class'])) {
+				$options['class'] = $this->cherry;
 			}
 
 			return parent::create($model, $options);
@@ -31,7 +31,7 @@
 
 		/**
 		 * Takes an array of options to output markup that works with
-		 * twitter bootstrap forms.
+		 * Twitter Bottstrap forms.
 		 *
 		 * @param array $options
 		 * @access public
@@ -43,7 +43,7 @@
 			$options = $this->_parseOptions($options);
 			$type = $options['type'];
 
-			if ($this->bootstrap !== false) {
+			if ($this->cherry !== false) {
 
 				switch($type) {
 
@@ -58,7 +58,7 @@
 							if (isset($options['after'])) {
 								$after = ' ' . $options['after'];
 							}
-							if ($this->bootstrap === 'form-horizontal') {
+							if ($this->cherry === 'form-horizontal') {
 								$options['before'] = '<div class="col-md-offset-' . $this->labelCol . ' col-md-' . $this->inputCol . '"><div class="checkbox">';
 								$options['after'] = $after . '</div></div>';
 							} else {
@@ -85,14 +85,14 @@
 							$label = $options['label'];
 						}
 
-						if ((!isset($options['label']) || $label !== false) && $this->bootstrap === 'form-horizontal') {
+						if ((!isset($options['label']) || $label !== false) && $this->cherry === 'form-horizontal') {
 							$options['label'] = array('class' => 'col-md-' . $this->labelCol . ' control-label');
 							if (isset($label)) {
 								$options['label']['text'] = $label;
 							}
 						}
 
-						if (!isset($options['before']) && !isset($options['between']) && !isset($options['after']) && $this->bootstrap === 'form-horizontal') {
+						if (!isset($options['before']) && !isset($options['between']) && !isset($options['after']) && $this->cherry === 'form-horizontal') {
 							$options['between'] = '<div class="col-md-' . $this->inputCol . '">';
 							$options['after'] = '</div>';
 						}
@@ -118,7 +118,7 @@
 
 		public function submit($caption = null, $options = array()) {
 
-			if ($this->bootstrap !== false) {
+			if ($this->cherry !== false) {
 				
 				if (!isset($options['class'])) {
 					$options['class'] = 'btn btn-default';
@@ -128,7 +128,7 @@
 					$options['div'] = 'form-group submit';
 				}
 
-				if ((!isset($options['div']) || $options['div']) && !isset($options['before']) && !isset($options['between']) && !isset($options['after']) && $this->bootstrap === 'form-horizontal') {
+				if ((!isset($options['div']) || $options['div']) && !isset($options['before']) && !isset($options['between']) && !isset($options['after']) && $this->cherry === 'form-horizontal') {
 					$options['before'] = '<div class="col-md-offset-' . $this->labelCol . ' col-md-' . $this->inputCol . '">';
 					$options['after'] = '</div>';
 				}
