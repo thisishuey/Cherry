@@ -27,7 +27,7 @@
 			?>
 		<![endif]-->
 	</head>
-	<body>
+	<body id="top" class="controller-<?php echo $this->request->params['controller']; ?> action-<?php echo $this->request->params['action']; ?>">
 		<div class="container">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
@@ -35,9 +35,7 @@
 		<?php
 			echo $this->Html->script(array(
 				'//code.jquery.com/jquery-1.11.0.min.js',
-				'//code.jquery.com/jquery-1.11.0.min.map',
 				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js',
-				'/cherry/js/cake',
 				'/cherry/js/core',
 				'default',
 			));
