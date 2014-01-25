@@ -62,7 +62,7 @@
 				</tr>
 			<?php echo "<?php endforeach; ?>\n"; ?>
 		</table>
-		<?php echo "<?php echo \$this->element('Bootstrap.paginator/counter'); ?>\n"; ?>
-		<?php echo "<?php echo \$this->element('Bootstrap.paginator/navigation'); ?>\n"; ?>
+		<?php echo "<?php echo \$this->element('Cherry.paginator/counter'); ?>\n"; ?>
+		<?php echo "<?php echo \$this->element('Cherry.paginator/navigation'); ?>\n"; ?>
 	</div>
 </div>

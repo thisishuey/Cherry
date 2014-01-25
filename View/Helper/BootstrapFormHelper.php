@@ -2,7 +2,7 @@
 
 	App::uses('FormHelper', 'View/Helper');
 
-	class BootstrapFormHelper extends FormHelper {
+	class CherryFormHelper extends FormHelper {
 
 		public $bootstrap = false;
 		private $labelCol = 4;
