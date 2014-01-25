@@ -16,45 +16,40 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div class="row-fluid">
-	<div class="span3">
-		<div class="actions well sidebar-nav">
-			<ul class="nav nav-list">
-				<li class="nav-header">Actions</li>
-				<li><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
+<div class="row">
+	<div class="col-md-3 sidebar">
+		<ul class="well nav nav-pills nav-stacked">
+			<li><h4><?php echo "<?php echo __('Actions'); ?>"; ?></h4></li>
+			<li><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
 <?php if (strpos($action, 'add') !== false): ?>
-				<li class="active"><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
+			<li class="active"><?php echo "<?php echo \$this->Html->link(__('Add {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
 <?php else: ?>
-				<li><?php echo "<?php echo \$this->Html->link(__('New {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
-				<li class="nav-header"><?php echo $singularHumanName; ?> Actions</li>
-				<li><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), array('action' => 'view', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
-				<li class="active"><?php echo '<?php echo $this->Html->link(__(\'Edit ' . $singularHumanName . '\'), array(\'action\' => \'edit\', $this->Form->value(\'' . $modelClass . '.' . $primaryKey . '\'))); ?>'; ?></li>
-				<li><?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), null, __('Are you sure you want to delete # %s?', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
+			<li><?php echo "<?php echo \$this->Html->link(__('Add {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
+			<li><h4><?php echo "<?php echo __('{$singularHumanName} Actions'); ?>"; ?></h4></li>
+			<li><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), array('action' => 'view', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
+			<li class="active"><?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), array('action' => 'edit', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
+			<li><?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), array(), __('Are you sure you want to delete this record (ID: %s)?', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>"; ?></li>
 <?php endif; ?>
-			</ul>
-		</div>
+		</ul>
 	</div>
-	<div class="span9">
-		<div class="<?php echo $pluralVar; ?> form">
-			<h2><?php echo "<?php echo __('" . Inflector::humanize($action) . " {$singularHumanName}'); ?>"; ?></h2>
-			<?php echo "<?php echo \$this->Form->create('{$modelClass}', array('class' => 'form-horizontal')); ?>\n"; ?>
-				<fieldset>
-					<legend><?php echo "<?php echo __('{$singularHumanName} Information'); ?>"; ?></legend>
+	<div class="col-md-9 content">
+		<h2><?php echo "<?php echo __('" . Inflector::humanize($action) . " {$singularHumanName}'); ?>"; ?></h2>
+		<?php echo "<?php echo \$this->Form->create('{$modelClass}', array('bootstrap' => 'form-horizontal')); ?>\n"; ?>
+			<fieldset>
+				<legend><?php echo "<?php echo __('{$singularHumanName} Information'); ?>"; ?></legend>
 <?php foreach ($fields as $field): ?>
 <?php if (strpos($action, 'add') !== false && $field == $primaryKey): ?>
 <?php continue; ?>
 <?php elseif (!in_array($field, array('created', 'modified', 'updated'))): ?>
-					<?php echo "<?php echo \$this->Form->input('{$field}'); ?>\n"; ?>
+				<?php echo "<?php echo \$this->Form->input('{$field}'); ?>\n"; ?>
 <?php endif; ?>
 <?php endforeach; ?>
 <?php if (!empty($associations['hasAndBelongsToMany'])): ?>
 <?php foreach ($associations['hasAndBelongsToMany'] as $assocName => $assocData): ?>
-					<?php echo "<?php echo \$this->Form->input('{$assocName}');?>\n"; ?>
+				<?php echo "<?php echo \$this->Form->input('{$assocName}');?>\n"; ?>
 <?php endforeach; ?>
 <?php endif; ?>
-				</fieldset>
-				<?php echo "<?php echo \$this->Form->submit('Submit', array('class' => 'btn btn-success')); ?>\n"; ?>
-			<?php echo "<?php echo \$this->Form->end(); ?>\n"; ?>
-		</div>
+			</fieldset>
+		<?php echo "<?php echo \$this->Form->end(__('Submit')); ?>\n"; ?>
 	</div>
 </div>

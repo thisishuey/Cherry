@@ -33,7 +33,7 @@ echo "<?php\n";
 		echo " * @property {$defaultModel} \${$defaultModel}\n";
 		if (!empty($components)) {
 			foreach ($components as $component) {
-				echo " * @property {$component}Component \${$component}\n";
+				echo "\t * @property {$component}Component \${$component}\n";
 			}
 		}
 	}
@@ -66,8 +66,8 @@ echo "<?php\n";
 	endif;
 
 	if (count($components)):
-		echo "/**\n * Components\n *\n * @var array\n */\n";
-		echo "\tpublic \$components = array(";
+		echo "\t\t/**\n\t\t * Components\n\t\t *\n\t\t * @var array\n\t\t */\n";
+		echo "\t\tpublic \$components = array(";
 		for ($i = 0, $len = count($components); $i < $len; $i++):
 			if ($i != $len - 1):
 				echo "'" . Inflector::camelize($components[$i]) . "', ";

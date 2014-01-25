@@ -16,43 +16,43 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<div class="row-fluid">
-	<div class="span3">
-		<div class="actions well sidebar-nav">
-			<ul class="nav nav-list">
-				<li class="nav-header">Actions</li>
-				<li><?php echo '<?php echo $this->Html->link(__(\'List ' . $pluralHumanName . '\'), array(\'action\' => \'index\')); ?>'; ?></li>
-				<li><?php echo '<?php echo $this->Html->link(__(\'New ' . $singularHumanName . '\'), array(\'action\' => \'add\')); ?>'; ?></li>
-				<li class="nav-header"><?php echo $singularHumanName; ?> Actions</li>
-				<li class="active"><?php echo '<?php echo $this->Html->link(__(\'View ' . $singularHumanName . '\'), array(\'action\' => \'view\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey . '\'])); ?>'; ?></li>
-				<li><?php echo '<?php echo $this->Html->link(__(\'Edit ' . $singularHumanName . '\'), array(\'action\' => \'edit\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey . '\'])); ?>'; ?></li>
-				<li><?php echo '<?php echo $this->Form->postLink(__(\'Delete ' . $singularHumanName . '\'), array(\'action\' => \'delete\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey .'\']), null, __(\'Are you sure you want to delete # %s?\', $' . $singularVar . '[\'' . $modelClass . '\'][\'' . $primaryKey . '\'])); ?>'; ?></li>
-			</ul>
-		</div>
+<div class="row">
+	<div class="col-md-3 sidebar">
+		<ul class="well nav nav-pills nav-stacked">
+			<li><h4><?php echo "<?php echo __('Actions'); ?>"; ?></h4></li>
+			<li><?php echo "<?php echo \$this->Html->link(__('List {$pluralHumanName}'), array('action' => 'index')); ?>"; ?></li>
+			<li><?php echo "<?php echo \$this->Html->link(__('Add {$singularHumanName}'), array('action' => 'add')); ?>"; ?></li>
+			<li><h4><?php echo "<?php echo __('{$singularHumanName} Actions'); ?>"; ?></h4></li>
+			<li class="active"><?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>"; ?></li>
+			<li><?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>"; ?></li>
+			<li><?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array(), __('Are you sure you want to delete this record (ID: %s)?', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>"; ?></li>
+		</ul>
 	</div>
-	<div class="span9">
-		<div class="<?php echo $pluralVar; ?> view">
-			<h2><?php echo '<?php echo __(\'' . $singularHumanName . '\'); ?>'; ?></h2>
-			<dl class="dl-horizontal">
+	<div class="col-md-9 content">
+		<h2><?php echo "<?php echo __('View {$singularHumanName}'); ?>"; ?></h2>
+		<dl class="dl-horizontal">
 <?php foreach ($fields as $field): ?>
 <?php $isKey = false; ?>
 <?php if (!empty($associations['belongsTo'])): ?>
 <?php foreach ($associations['belongsTo'] as $alias => $details): ?>
 <?php if ($field === $details['foreignKey']): ?>
 <?php $isKey = true; ?>
-				<dt title="<?php echo '<?php echo __(\'' . Inflector::humanize(Inflector::underscore($alias)) . '\'); ?>'; ?>"><?php echo '<?php echo __(\'' . Inflector::humanize(Inflector::underscore($alias)) . '\'); ?>'; ?></dt>
-				<dd><?php echo '<?php echo $this->Html->link($' . $singularVar . '[\'' . $alias . '\'][\'' . $details['displayField'] . '\'], array(\'controller\' => \'' . $details['controller'] . '\', \'action\' => \'view\', $' . $singularVar . '[\'' . $alias . '\'][\'' . $details['primaryKey'] . '\'])); ?>'; ?>&nbsp;</dd>
+			<dt title="<?php echo "<?php echo __('" . Inflector::humanize(Inflector::underscore($alias)) . "'); ?>"; ?>"><?php echo "<?php echo __('" . Inflector::humanize(Inflector::underscore($alias)) . "'); ?>"; ?></dt>
+			<dd><?php echo "<?php echo \$this->Html->link(\${$singularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}['{$alias}']['{$details['primaryKey']}'])); ?>"; ?>&nbsp;</dd>
 <?php break; ?>
 <?php endif; ?>
 <?php endforeach; ?>
 <?php endif; ?>
 <?php if ($isKey !== true): ?>
-				<dt title="<?php echo '<?php echo __(\'' . Inflector::humanize($field) . '\'); ?>'; ?>"><?php echo '<?php echo __(\'' . Inflector::humanize($field) . '\'); ?>'; ?></dt>
-				<dd><?php echo '<?php echo h($' . $singularVar . '[\'' . $modelClass . '\'][\'' . $field . '\']); ?>'; ?>&nbsp;</dd>
+			<dt title="<?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?>"><?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?></dt>
+<?php if ($field === 'created' || $field === 'modified'): ?>
+			<dd><?php echo "<?php echo \$this->Time->timeAgoInWords(\${$singularVar}['{$modelClass}']['{$field}']); ?>"; ?>&nbsp;</dd>
+<?php else: ?>
+			<dd><?php echo "<?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>"; ?>&nbsp;</dd>
+<?php endif; ?>
 <?php endif; ?>
 <?php endforeach; ?>
-			</dl>
-		</div>
+		</dl>
 <?php if (!empty($associations['hasOne'])): ?>
 <?php foreach ($associations['hasOne'] as $alias => $details): ?>
 		<div class="related">
@@ -68,7 +68,7 @@
 			<div class="actions">
 				<?php echo "<?php echo \$this->Html->link(__('View'), array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
 				<?php echo "<?php echo \$this->Html->link(__('Edit'), array('controller' => '{$details['controller']}', 'action' => 'edit', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
-				<?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete # %s?', \${$otherSingularVar}['{$details['primaryKey']}'])); ?>\n"; ?>
+				<?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete this record (ID: %s)?', \${$otherSingularVar}['{$details['primaryKey']}'])); ?>\n"; ?>
 			</div>
 		</div>
 <?php endforeach; ?>
@@ -101,7 +101,7 @@
 							<td class="actions">
 								<?php echo "<?php echo \$this->Html->link(__('View'), array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
 								<?php echo "<?php echo \$this->Html->link(__('Edit'), array('controller' => '{$details['controller']}', 'action' => 'edit', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
-								<?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete # %s?', \${$otherSingularVar}['{$details['primaryKey']}'])); ?>\n"; ?>
+								<?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete this record (ID: %s)?', \${$otherSingularVar}['{$details['primaryKey']}'])); ?>\n"; ?>
 							</td>
 						</tr>
 					<?php echo "<?php endforeach; ?>\n"; ?>

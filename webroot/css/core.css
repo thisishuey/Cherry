@@ -1,36 +1,28 @@
 body {
-	padding-top: 60px;
-	padding-bottom: 40px;
+	padding-top: 0;
+	padding-bottom: 30px;
 }
 
-.sidebar-nav {
-	padding: 9px 0;
+.help-block.text-muted {
+	color: #999;
 }
 
-.cake-sql-log {
-	width: 100%;
-	margin-bottom: 20px;
+.help-block.text-primary {
+	color: #428bca;
 }
 
-.cake-sql-log th, .cake-sql-log td {
-	padding: 8px;
-	line-height: 20px;
-	text-align: left;
-	vertical-align: top;
-	border-top: 1px solid #ddd;
+.help-block.text-success {
+	color: #468847;
 }
 
-.cake-sql-log th {
-	font-weight: bold;
+.help-block.text-info {
+	color: #3a87ad;
 }
 
-@media (max-width: 979px) {
+.help-block.text-warning {
+	color: #c09853;
+}
 
-	/* Enable use of floated navbar text */
-	.navbar-text.pull-right {
-		float: none;
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-
+.help-block.text-danger {
+	color: #b94a48;
 }

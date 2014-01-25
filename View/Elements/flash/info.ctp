@@ -1,4 +1,4 @@
-<div class="alert-info">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
+<div class="alert alert-info alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	<?php echo $message ?>
 </div>

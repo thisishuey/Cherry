@@ -62,7 +62,7 @@
 <?php endif; ?>
 				} else {
 <?php if ($wannaUseSession): ?>
-					$this->Session->setFlash(__('The <?php echo strtolower($singularHumanName); ?> could not be saved. Please, try again.'), 'Bootstrap.flash/error');
+					$this->Session->setFlash(__('The <?php echo strtolower($singularHumanName); ?> could not be saved. Please, try again.'), 'Bootstrap.flash/danger');
 <?php endif; ?>
 				}
 			}
@@ -103,7 +103,7 @@
 <?php endif; ?>
 				} else {
 <?php if ($wannaUseSession): ?>
-					$this->Session->setFlash(__('The <?php echo strtolower($singularHumanName); ?> could not be saved. Please, try again.'), 'Bootstrap.flash/error');
+					$this->Session->setFlash(__('The <?php echo strtolower($singularHumanName); ?> could not be saved. Please, try again.'), 'Bootstrap.flash/danger');
 <?php endif; ?>
 				}
 			} else {
@@ -147,7 +147,7 @@
 <?php endif; ?>
 			}
 <?php if ($wannaUseSession): ?>
-			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> was not deleted'), 'Bootstrap.flash/error');
+			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> was not deleted'), 'Bootstrap.flash/danger');
 <?php else: ?>
 			$this->flash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> was not deleted'), array('action' => 'index'));
 <?php endif; ?>
