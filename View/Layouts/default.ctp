@@ -37,6 +37,7 @@
 				'//code.jquery.com/jquery-1.11.0.min.js',
 				'//code.jquery.com/jquery-1.11.0.min.map',
 				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js',
+				'/cherry/js/cake',
 				'/cherry/js/core',
 				'default',
 			));
