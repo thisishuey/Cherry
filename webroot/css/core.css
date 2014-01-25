@@ -1,6 +1,6 @@
-body {
-	padding-top: 0;
-	padding-bottom: 30px;
+/* This takes care of the cake warning when setting up a new project */
+#url-rewriting-warning {
+	display: none;
 }
 
 .help-block.text-muted {
