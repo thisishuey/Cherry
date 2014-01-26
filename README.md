@@ -24,7 +24,7 @@ The master branch has the following requirements:
 
 We have included Console Templates to allow you to easily bake a project and gain bootstrap functionality throughout.
 
-To utilize the Console Templates simply bake your project like usual but select `Cherry`
+To utilize the Console Templates simply bake your project like usual but select `Cherry` when it asks you which template you would like to use.
 
 ## Cherry Form Helper
 
@@ -37,3 +37,5 @@ To change a form from a regular CakePHP form to a Bootstrap form all you need to
 You can also utilize Twitter Bootstrap's build in form classes by passing them in the Form Helper `create` method instead.
 
 * For example: `<?php echo $this->Form->create('User', array('cherry' => 'form-horizontal')); ?>`
+
+In most cases you will create form elements just like you would with CakePHP's default FormHelper, Cherry's Form Helper will take care of making the default elements compatible with Twitter Bootstrap.
