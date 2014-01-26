@@ -24,7 +24,6 @@
 		 * @return void
 		 */
 		public function <?php echo $admin ?>index() {
-			$this->paginate = array('contain' => false);
 			$<?php echo $pluralName ?> = $this->paginate();
 			$this->set(compact('<?php echo $pluralName ?>'));
 		}

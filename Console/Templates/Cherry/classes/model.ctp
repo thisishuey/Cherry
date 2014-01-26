@@ -73,13 +73,19 @@ echo "<?php\n";
 		public $displayField = '<?php echo $displayField; ?>';
 
 <?php endif; ?>
+<?php if (!empty($actsAs)): ?>
 		/**
 		 * Behaviors
 		 *
 		 * @var array
 		 */
-		public $actsAs = array('Containable');
+		public $actsAs = array(
+<?php foreach ($actsAs as $behavior): ?>
+			<?php var_export($behavior); ?>,
+<?php endforeach; ?>
+		);
 
+<?php endif; ?>
 <?php if (!empty($validate)): ?>
 		/**
 		 * Validation rules
