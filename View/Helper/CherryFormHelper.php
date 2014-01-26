@@ -8,6 +8,31 @@
 		private $labelCol = 3;
 		private $inputCol = 9;
 
+		/**
+		 * Returns an HTML FORM element.
+		 *
+		 * ### Options:
+		 *
+		 * - `type` Form method defaults to POST
+		 * - `action`  The controller action the form submits to, (optional).
+		 * - `url`  The URL the form submits to. Can be a string or a URL array. If you use 'url'
+		 *    you should leave 'action' undefined.
+		 * - `default`  Allows for the creation of Ajax forms. Set this to false to prevent the default event handler.
+		 *   Will create an onsubmit attribute if it doesn't not exist. If it does, default action suppression
+		 *   will be appended.
+		 * - `onsubmit` Used in conjunction with 'default' to create ajax forms.
+		 * - `inputDefaults` set the default $options for FormHelper::input(). Any options that would
+		 *   be set when using FormHelper::input() can be set here. Options set with `inputDefaults`
+		 *   can be overridden when calling input()
+		 * - `encoding` Set the accept-charset encoding for the form. Defaults to `Configure::read('App.encoding')`
+		 *
+		 * @param mixed $model The model name for which the form is being defined. Should
+		 *   include the plugin name for plugin models. e.g. `ContactManager.Contact`.
+		 *   If an array is passed and $options argument is empty, the array will be used as options.
+		 *   If `false` no model is used.
+		 * @param array $options An array of html attributes and options.
+		 * @return string An formatted opening FORM tag.
+		 */
 		public function create($model = null, $options = array()) {
 
 			if (!isset($options['role'])) {
@@ -30,12 +55,36 @@
 		}
 
 		/**
-		 * Takes an array of options to output markup that works with
-		 * Twitter Bottstrap forms.
+		 * Generates a form input element complete with label and wrapper div
 		 *
-		 * @param array $options
-		 * @access public
-		 * @return string
+		 * ### Options
+		 *
+		 * See each field type method for more information. Any options that are part of
+		 * $attributes or $options for the different **type** methods can be included in `$options` for input().i
+		 * Additionally, any unknown keys that are not in the list below, or part of the selected type's options
+		 * will be treated as a regular html attribute for the generated input.
+		 *
+		 * - `type` - Force the type of widget you want. e.g. `type => 'select'`
+		 * - `label` - Either a string label, or an array of options for the label. See FormHelper::label().
+		 * - `div` - Either `false` to disable the div, or an array of options for the div.
+		 *	See HtmlHelper::div() for more options.
+		 * - `options` - For widgets that take options e.g. radio, select.
+		 * - `error` - Control the error message that is produced. Set to `false` to disable any kind of error reporting (field
+		 *    error and error messages).
+		 * - `errorMessage` - Boolean to control rendering error messages (field error will still occur).
+		 * - `empty` - String or boolean to enable empty select box options.
+		 * - `before` - Content to place before the label + input.
+		 * - `after` - Content to place after the label + input.
+		 * - `between` - Content to place between the label + input.
+		 * - `format` - Format template for element order. Any element that is not in the array, will not be in the output.
+		 *	- Default input format order: array('before', 'label', 'between', 'input', 'after', 'error')
+		 *	- Default checkbox format order: array('before', 'input', 'between', 'label', 'after', 'error')
+		 *	- Hidden input will not be formatted
+		 *	- Radio buttons cannot have the order of input and label elements controlled with these settings.
+		 *
+		 * @param string $fieldName This should be "Modelname.fieldname"
+		 * @param array $options Each type of input takes different options.
+		 * @return string Completed form widget.
 		 */
 		public function input($fieldName, $options = array()) {
 
@@ -116,6 +165,33 @@
 
 		}
 
+		/**
+		 * Creates a submit button element. This method will generate `<input />` elements that
+		 * can be used to submit, and reset forms by using $options. image submits can be created by supplying an
+		 * image path for $caption.
+		 *
+		 * ### Options
+		 *
+		 * - `div` - Include a wrapping div?  Defaults to true. Accepts sub options similar to
+		 *   FormHelper::input().
+		 * - `before` - Content to include before the input.
+		 * - `after` - Content to include after the input.
+		 * - `type` - Set to 'reset' for reset inputs. Defaults to 'submit'
+		 * - Other attributes will be assigned to the input element.
+		 *
+		 * ### Options
+		 *
+		 * - `div` - Include a wrapping div?  Defaults to true. Accepts sub options similar to
+		 *   FormHelper::input().
+		 * - Other attributes will be assigned to the input element.
+		 *
+		 * @param string $caption The label appearing on the button OR if string contains :// or the
+		 *  extension .jpg, .jpe, .jpeg, .gif, .png use an image if the extension
+		 *  exists, AND the first character is /, image is relative to webroot,
+		 *  OR if the first character is not /, image is relative to webroot/img.
+		 * @param array $options Array of options. See above.
+		 * @return string A HTML submit button
+		 */
 		public function submit($caption = null, $options = array()) {
 
 			if ($this->cherry !== false) {
