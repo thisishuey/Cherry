@@ -215,4 +215,98 @@
 
 		}
 
+		/**
+		 * Creates an HTML link, but access the URL using the method you specify (defaults to POST).
+		 * Requires javascript to be enabled in browser.
+		 *
+		 * This method creates a `<form>` element. So do not use this method inside an existing form.
+		 * Instead you should add a submit button using FormHelper::submit()
+		 *
+		 * ### Options:
+		 *
+		 * - `data` - Array with key/value to pass in input hidden
+		 * - `method` - Request method to use. Set to 'delete' to simulate HTTP/1.1 DELETE request. Defaults to 'post'.
+		 * - `confirm` - Can be used instead of $confirmMessage.
+		 * - Other options is the same of HtmlHelper::link() method.
+		 * - The option `onclick` will be replaced.
+		 *
+		 * @param string $title The content to be wrapped by <a> tags.
+		 * @param string|array $url Cake-relative URL or array of URL parameters, or external URL (starts with http://)
+		 * @param array $options Array of HTML attributes.
+		 * @param boolean|string $confirmMessage JavaScript confirmation message.
+		 * @return string An `<a />` element.
+		 * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#FormHelper::postLink
+		 */
+		public function postLink($title, $url = null, $options = array(), $confirmMessage = false) {
+			$requestMethod = 'POST';
+			if (!empty($options['method'])) {
+				$requestMethod = strtoupper($options['method']);
+				unset($options['method']);
+			}
+			if (!empty($options['confirm'])) {
+				$confirmMessage = $options['confirm'];
+				unset($options['confirm']);
+			}
+
+			$formName = str_replace('.', '', uniqid('post_', true));
+			$formUrl = $this->url($url);
+			$formOptions = array(
+				'name' => $formName,
+				'id' => $formName,
+				'style' => 'display:none;',
+				'method' => 'post',
+			);
+			if (isset($options['target'])) {
+				$formOptions['target'] = $options['target'];
+				unset($options['target']);
+			}
+
+			$out = $this->Html->useTag('form', $formUrl, $formOptions);
+			$out .= $this->Html->useTag('hidden', '_method', array(
+				'value' => $requestMethod
+			));
+			$out .= $this->_csrfField();
+
+			$fields = array();
+			if (isset($options['data']) && is_array($options['data'])) {
+				foreach ($options['data'] as $key => $value) {
+					$fields[$key] = $value;
+					$out .= $this->hidden($key, array('value' => $value, 'id' => false));
+				}
+				unset($options['data']);
+			}
+			$out .= $this->secure($fields);
+			$out .= $this->Html->useTag('formend');
+
+			$modalTitle = 'Are you sure?';
+			if (!empty($options['modalTitle'])) {
+				$modalTitle = $options['modalTitle'];
+				unset($options['modalTitle']);
+			}
+
+			$confirmTitle = 'Delete';
+			if (!empty($options['confirmTitle'])) {
+				$confirmTitle = $options['confirmTitle'];
+				unset($options['confirmTitle']);
+			}
+
+			$confirmClass = 'btn btn-danger';
+			if (!empty($options['confirmClass'])) {
+				$confirmClass = $options['confirmClass'];
+				unset($options['confirmClass']);
+			}
+
+			$url = '#';
+			$onClick = 'document.' . $formName . '.submit();';
+			if ($confirmMessage) {
+				$options['onclick'] = "modal({'modalTitle': '{$modalTitle}', 'modalBody': '{$confirmMessage}', 'confirmTitle': '{$confirmTitle}', 'confirmClass': '{$confirmClass}', 'confirmCallback': function() {{$onClick}}});";
+			} else {
+				$options['onclick'] = $onClick;
+			}
+			$options['onclick'] .= ' event.preventDefault();';
+
+			$out .= $this->Html->link($title, $url, $options);
+			return $out;
+		}
+
 	}
