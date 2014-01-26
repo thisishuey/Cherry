@@ -12,12 +12,20 @@ The master branch has the following requirements:
 ## Installation
 
 * Clone/Copy the files in this directory into `app/Plugin/Cherry`
-	* Note: You can also run `git submodule add https://github.com/thisishuey/Cherry.git app/Plugin/Cherry` from your CakePHP root directory in terminal for easy submodule access to Cherry.
 * Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::load('Cherry');`
 * Include the form helper in your `AppController.php`:
    * `public $helpers = array('Form' => array('className' => 'Cherry.CherryForm'));`
 * Copy the `app/Plugin/Cherry/View/Layouts/default.ctp` file over your current `default.ctp` file to gain access to bootstrap in your views
 * Modify `default.ctp` and any of your views to take advantage of Twitter Bootstrap's functionality
+
+## Submodule Installation
+
+You can also add Cherry to your CakePHP project as a submodule
+
+```
+$ cd /your_app_path/Plugin
+$ git submodule add https://github.com/thisishuey/Cherry.git Cherry
+```
 
 # Documentation
 
