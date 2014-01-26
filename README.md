@@ -18,7 +18,7 @@ The master branch has the following requirements:
 * Copy the `app/Plugin/Cherry/View/Layouts/default.ctp` file over your current `default.ctp` file to gain access to bootstrap in your views
 * Modify `default.ctp` and any of your views to take advantage of Twitter Bootstrap's functionality
 
-## Submodule Installation
+### Install as Git submodule
 
 You can also add Cherry to your CakePHP project as a submodule
 
