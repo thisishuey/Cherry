@@ -33,7 +33,7 @@
 			<div class="list-group">
 				<?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), array('action' => 'view', \$this->Form->value('{$modelClass}.{$primaryKey}')), array('class' => 'list-group-item')); ?>\n"; ?>
 				<?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), array('action' => 'edit', \$this->Form->value('{$modelClass}.{$primaryKey}')), array('class' => 'list-group-item active')); ?>\n"; ?>
-				<?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), array('class' => 'list-group-item'), __('Are you sure you want to delete this record (ID: %s)?', \$this->Form->value('{$modelClass}.{$primaryKey}'))); ?>\n"; ?>
+				<?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), array('class' => 'list-group-item', 'confirm' => __('Are you sure you want to delete this record (ID: %s)?', \$this->Form->value('{$modelClass}.{$primaryKey}')))); ?>\n"; ?>
 <?php endif; ?>
 			</div>
 		</div>

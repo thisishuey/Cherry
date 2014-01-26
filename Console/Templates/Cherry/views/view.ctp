@@ -30,7 +30,7 @@
 			<div class="list-group">
 				<?php echo "<?php echo \$this->Html->link(__('View {$singularHumanName}'), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'list-group-item active')); ?>\n"; ?>
 				<?php echo "<?php echo \$this->Html->link(__('Edit {$singularHumanName}'), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'list-group-item')); ?>\n"; ?>
-				<?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'list-group-item'), __('Are you sure you want to delete this record (ID: %s)?', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n"; ?>
+				<?php echo "<?php echo \$this->Form->postLink(__('Delete {$singularHumanName}'), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'list-group-item', 'confirm' => __('Are you sure you want to delete this record (ID: %s)?', \${$singularVar}['{$modelClass}']['{$primaryKey}']))); ?>\n"; ?>
 			</div>
 		</div>
 	</div>
@@ -72,9 +72,11 @@
 				</dl>
 			<?php echo "<?php endif; ?>\n"; ?>
 			<div class="actions">
-				<?php echo "<?php echo \$this->Html->link(__('View'), array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
-				<?php echo "<?php echo \$this->Html->link(__('Edit'), array('controller' => '{$details['controller']}', 'action' => 'edit', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
-				<?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete this record (ID: %s)?', \${$otherSingularVar}['{$details['primaryKey']}'])); ?>\n"; ?>
+				<div class="btn-group">
+					<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-list-alt\"></span>', array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('View'), 'escape' => false)); ?>\n"; ?>
+					<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-pencil\"></span>', array('controller' => '{$details['controller']}', 'action' => 'edit', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Edit'), 'escape' => false)); ?>\n"; ?>
+					<?php echo "<?php echo \$this->Form->postLink('<span class=\"glyphicon glyphicon-trash\"></span>', array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Delete'), 'escape' => false, 'confirm' => __('Are you sure you want to delete this record (ID: %s)?', \${$otherSingularVar}['{$details['primaryKey']}']))); ?>\n"; ?>
+				</div>
 			</div>
 		</div>
 <?php endforeach; ?>
@@ -92,29 +94,33 @@
 		<div class="related">
 			<h3><?php echo "<?php echo __('Related " . $otherPluralHumanName . "'); ?>"; ?></h3>
 			<?php echo "<?php if (!empty(\${$singularVar}['{$alias}'])): ?>\n"; ?>
-				<table class="table table-striped table-bordered">
-					<tr>
-<?php foreach ($details['fields'] as $field): ?>
-						<th><?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?></th>
-<?php endforeach; ?>
-						<th class="actions"><?php echo "<?php echo __('Actions'); ?>"; ?></th>
-					</tr>
-					<?php echo "<?php foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?>\n"; ?>
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered">
 						<tr>
 <?php foreach ($details['fields'] as $field): ?>
-							<td><?php echo "<?php echo \${$otherSingularVar}['{$field}']; ?>"; ?>&nbsp;</td>
+							<th><?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?></th>
 <?php endforeach; ?>
-							<td class="actions">
-								<?php echo "<?php echo \$this->Html->link(__('View'), array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
-								<?php echo "<?php echo \$this->Html->link(__('Edit'), array('controller' => '{$details['controller']}', 'action' => 'edit', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini')); ?>\n"; ?>
-								<?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete this record (ID: %s)?', \${$otherSingularVar}['{$details['primaryKey']}'])); ?>\n"; ?>
-							</td>
+							<th class="actions"><?php echo "<?php echo __('Actions'); ?>"; ?></th>
 						</tr>
-					<?php echo "<?php endforeach; ?>\n"; ?>
-				</table>
+						<?php echo "<?php foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?>\n"; ?>
+							<tr>
+<?php foreach ($details['fields'] as $field): ?>
+								<td><?php echo "<?php echo \${$otherSingularVar}['{$field}']; ?>"; ?>&nbsp;</td>
+<?php endforeach; ?>
+								<td class="actions">
+									<div class="btn-group">
+										<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-list-alt\"></span>', array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('View'), 'escape' => false)); ?>\n"; ?>
+										<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-pencil\"></span>', array('controller' => '{$details['controller']}', 'action' => 'edit', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Edit'), 'escape' => false)); ?>\n"; ?>
+										<?php echo "<?php echo \$this->Form->postLink('<span class=\"glyphicon glyphicon-trash\"></span>', array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Delete'), 'escape' => false, 'confirm' => __('Are you sure you want to delete this record (ID: %s)?', \${$otherSingularVar}['{$details['primaryKey']}']))); ?>\n"; ?>
+									</div>
+								</td>
+							</tr>
+						<?php echo "<?php endforeach; ?>\n"; ?>
+					</table>
+				</div>
 			<?php echo "<?php endif; ?>\n"; ?>
 			<div class="actions">
-				<?php echo "<?php echo \$this->Html->link('<i class=\"icon-plus icon-white\"></i> ' . __('New " . Inflector::humanize(Inflector::underscore($alias)) . "'), array('controller' => '{$details['controller']}', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>\n"; ?>
+				<?php echo "<?php echo \$this->Html->link(__('Add " . Inflector::humanize(Inflector::underscore($alias)) . "'), array('controller' => '{$details['controller']}', 'action' => 'add'), array('class' => 'btn btn-default')); ?>\n"; ?>
 			</div>
 		</div>
 <?php endforeach; ?>

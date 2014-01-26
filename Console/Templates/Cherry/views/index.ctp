@@ -58,9 +58,11 @@
 <?php endif; ?>
 <?php endforeach; ?>
 						<td class="actions">
-							<?php echo "<?php echo \$this->Html->link(__('View'), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-success btn-xs')); ?>\n"; ?>
-							<?php echo "<?php echo \$this->Html->link(__('Edit'), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-warning btn-xs')); ?>\n"; ?>
-							<?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-danger btn-xs'), __('Are you sure you want to delete this record (ID: %s)?', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n"; ?>
+							<div class="btn-group">
+								<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-list-alt\"></span>', array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-default btn-xs', 'title' => __('View'), 'escape' => false)); ?>\n"; ?>
+								<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-pencil\"></span>', array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Edit'), 'escape' => false)); ?>\n"; ?>
+								<?php echo "<?php echo \$this->Form->postLink('<span class=\"glyphicon glyphicon-trash\"></span>', array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Delete'), 'escape' => false, 'confirm' => __('Are you sure you want to delete this record (ID: %s)?', \${$singularVar}['{$modelClass}']['{$primaryKey}']))); ?>\n"; ?>
+							</div>
 						</td>
 					</tr>
 				<?php echo "<?php endforeach; ?>\n"; ?>

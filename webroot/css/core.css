@@ -26,3 +26,7 @@
 .help-block.text-danger {
 	color: #b94a48;
 }
+
+.actions .btn-group {
+	min-width: 75px;
+}
