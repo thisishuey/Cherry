@@ -23,7 +23,7 @@ The master branch has the following requirements:
 You can also add Cherry to your CakePHP project as a submodule
 
 ```
-$ cd /<your_CakePHP_root>/
+$ cd /path/to/CakePHP/project/
 $ git submodule add https://github.com/thisishuey/Cherry.git app/Plugin/Cherry
 ```
 
