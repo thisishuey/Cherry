@@ -12,6 +12,7 @@ The master branch has the following requirements:
 ## Installation
 
 * Clone/Copy the files in this directory into `app/Plugin/Cherry`
+	* Note: You can also run `git submodule add https://github.com/thisishuey/Cherry.git app/Plugin/Cherry` from your CakePHP root directory in terminal for easy submodule access to Cherry.
 * Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::load('Cherry');`
 * Include the form helper in your `AppController.php`:
    * `public $helpers = array('Form' => array('className' => 'Cherry.CherryForm'));`
