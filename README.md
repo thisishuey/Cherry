@@ -48,3 +48,50 @@ You can also utilize Bootstrap's build in form classes by passing them in the Fo
 * For example: `<?php echo $this->Form->create('User', array('cherry' => 'form-horizontal')); ?>`
 
 In most cases you will create form elements just like you would with CakePHP's default FormHelper, Cherry's FormHelper will take care of making the default elements compatible with Bootstrap.
+
+## Bootstrap Modal Functions
+
+There are three functions in the core.js file to help use Bootstrap modals:
+
+1. modal(args)
+2. alertModal(message)
+3. confirmModal(message, callback(confirmed))
+
+### modal(args)
+
+The `modal(args)` function can be used to easily create a quick modal that will be added to the DOM on call and then destroyed when it is closed. The following args can be passed:
+
+* `modalTitle` is used to set the title of the modal, defaults to `"The page at <domain> says:"` to match javascripts default alert and confirm popups
+* `modalBody` is used to set the body of the modal, defaults to `undefined`
+* `modalIframe` can be used to load an iframe into the modal, it will overwrite `modalBody` if present
+* `cancelText` can be used to set the text of the cancel button, if it's set to `false` the cancel button will not be shown, defaults to `false`
+* `cancelClass` can be used to set the class of the cancel button using Bootstrap's built in button classes, defaults to `btn btn-default`
+* `cancelCallback` can be used to pass in a callback function that is executed when the cancel button is pushed, defaults to `function(confirmed) {};` and it gets pass a confirmed boolean that will always be false, this is useful if you want to use the same function for both cancel and confirm and determine what to do inside the function itself, see confirmModal below
+* `confirmText` can be used to set the text of the confirm button, if it's set to `false` the confirm button will not be shown, defaults to `false`
+* `confirmClass` can be used to set the class of the confirm button using Bootstrap's built in button classes, defaults to `btn btn-success`
+* `confirmCallback` can be used to pass in a callback function that is executed when the confirm button is pushed, defaults to `function(confirmed) {};` and it gets pass a confirmed boolean that will always be true, this is useful if you want to use the same function for both cancel and confirm and determine what to do inside the function itself, see confirmModal below
+
+### alertModal(message)
+
+The `alertModal(message)` function can be used to create a quick alert modal that will be added to the DOM on call and then destroyed when it is closed. The follwing args can be passed:
+
+* `message` this is the message you would like to display in the modal, defaults to `undefined`
+
+The `alertModal(message)` function also goes ahead and sets `confirmText = 'OK'` and can also be passed an object instead of `message` to take advantage of any of the modal args.
+
+### confirmModal(message, callback)
+
+The `confirmModal(message, callback)` function can be used to create a quick confirm modal that will be added to the DOM on call and then destroyed when it is closed. The following args can be passed:
+
+* `message` this is the message that you would like to display in the modal, defaults to `undefined`
+* `callback` this is the callback that you would like to use on confirmation. This callback is passed to both `cancelCallback` and `confirmCallback` and is passed back a `confirmed` argument that can be used to determine what to do in the function.
+
+The `confirmModal(message, callback)` function also goes ahead and sets `cancelText = 'Cancel'` and  `confirmText = 'OK'` and can also be passed an object instead of `message` to take advantage of any of the modal args.
+
+The `confirmModal(message, callback)` is being used by the CherryFormHelper for postLink confirmations
+
+# TODO
+
+* Clean up postLink and delete links to allow for more than just 'Delete' confirmation as postLink could be used in many different places
+* Add MenuHelper to help create dyanmic menus
+* Override HtmlHelper to give some advanced functionality for images and confirmation links, etc.

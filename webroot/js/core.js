@@ -14,23 +14,23 @@ var modal = function(args) {
 	if (typeof(args.modalBody) === 'boolean' && args.modalBody === false) {
 		args.modalBody = 'false';
 	}
-	if (typeof(args.cancelTitle) === 'undefined') {
-		args.cancelTitle = false;
+	if (typeof(args.cancelText) === 'undefined') {
+		args.cancelText = false;
 	}
 	if (typeof(args.cancelClass) === 'undefined') {
 		args.cancelClass = 'btn btn-default';
 	}
-	if (typeof(args.confirmTitle) === 'undefined') {
-		args.confirmTitle = false;
+	if (typeof(args.cancelCallback) === 'undefined') {
+		args.cancelCallback = function(confirmed) {};
+	}
+	if (typeof(args.confirmText) === 'undefined') {
+		args.confirmText = false;
 	}
 	if (typeof(args.confirmClass) === 'undefined') {
 		args.confirmClass = 'btn btn-success';
 	}
 	if (typeof(args.confirmCallback) === 'undefined') {
-		args.confirmCallback = function() {};
-	}
-	if (typeof(args.cancelCallback) === 'undefined') {
-		args.cancelCallback = function() {};
+		args.confirmCallback = function(confirmed) {};
 	}
 
 	var confirmed = false;
@@ -54,18 +54,18 @@ var modal = function(args) {
 	var $modalBody = $('<div>', {'class': 'modal-body', 'html': args.modalBody});
 	$modalContent.append($modalBody);
 
-	if (args.cancelTitle !== false || args.confirmTitle !== false) {
+	if (args.cancelText !== false || args.confirmText !== false) {
 		var $modalFooter = $('<div>', {'class': 'modal-footer'});
 		$modalContent.append($modalFooter);
 	}
 
-	if (args.cancelTitle !== false) {
-		var $cancelButton = $('<button>', {'type': 'button', 'class': args.cancelClass, 'data-dismiss': 'modal', 'html': args.cancelTitle});
+	if (args.cancelText !== false) {
+		var $cancelButton = $('<button>', {'type': 'button', 'class': args.cancelClass, 'data-dismiss': 'modal', 'html': args.cancelText});
 		$modalFooter.append($cancelButton);
 	}
 
-	if (args.confirmTitle !== false) {
-		var $confirmButton = $('<button>', {'type': 'button', 'class': args.confirmClass, 'html': args.confirmTitle});
+	if (args.confirmText !== false) {
+		var $confirmButton = $('<button>', {'type': 'button', 'class': args.confirmClass, 'html': args.confirmText});
 		$modalFooter.append($confirmButton);
 		$confirmButton.on('click', function(event) {
 			event.preventDefault();
@@ -90,36 +90,39 @@ var modal = function(args) {
 	return $modal;
 };
 
-var alertModal = function(args) {
-	if (typeof(args) === 'string') {
+var alertModal = function(message) {
+	var args = message;
+	if (typeof(args) === 'undefined') {
+		args = {};
+	} else if (typeof(args) !== 'object') {
 		args = {
 			modalBody: args
 		};
 	}
-	if (typeof(args.confirmTitle) === 'undefined') {
-		args.confirmTitle = 'OK';
+	if (typeof(args.confirmText) === 'undefined') {
+		args.confirmText = 'OK';
 	}
 	modal(args);
 };
 
-var confirmModal = function(args, callback) {
-	var inputArgs = args;
-	if (typeof(inputArgs) !== 'object') {
+var confirmModal = function(message, callback) {
+	var args = message
+	if (typeof(args) === 'undefined') {
+		args = {};
+	} else if (typeof(args) !== 'object') {
 		args = {
-			modalBody: inputArgs
+			modalBody: args
 		};
-	} else {
-		args = inputArgs
 	}
 	if (typeof(callback) !== 'undefined') {
 		args.confirmCallback = callback;
 		args.cancelCallback = callback;
 	}
-	if (typeof(args.cancelTitle) === 'undefined') {
-		args.cancelTitle = 'Cancel';
+	if (typeof(args.cancelText) === 'undefined') {
+		args.cancelText = 'Cancel';
 	}
-	if (typeof(args.confirmTitle) === 'undefined') {
-		args.confirmTitle = 'OK';
+	if (typeof(args.confirmText) === 'undefined') {
+		args.confirmText = 'OK';
 	}
 	modal(args);
 };
