@@ -28,14 +28,14 @@ To utilize the Console Templates simply bake your project like usual but select 
 
 ## Cherry Form Helper
 
-The Cherry Form Helper was built to take advantage of Twitter Bootstrap's form layouts. It will wrap form elements in the appropriate classes but passes on everything else to the default Form Helper.
+The CherryFormHelper was built to take advantage of Twitter Bootstrap's form layouts. It will wrap form elements in the appropriate classes but passes on everything else to the default FormHelper.
 
-To change a form from a regular CakePHP form to a Bootstrap form all you need to do is add `'cherry' => true` to the Form Helper `create` method.
+To change a form from a regular CakePHP form to a Bootstrap form all you need to do is add `'cherry' => true` to the FormHelper `create` method.
 
 * For example: `<?php echo $this->Form->create('User', array('cherry' => true)); ?>`
 
-You can also utilize Twitter Bootstrap's build in form classes by passing them in the Form Helper `create` method instead.
+You can also utilize Twitter Bootstrap's build in form classes by passing them in the FormHelper `create` method instead.
 
 * For example: `<?php echo $this->Form->create('User', array('cherry' => 'form-horizontal')); ?>`
 
-In most cases you will create form elements just like you would with CakePHP's default FormHelper, Cherry's Form Helper will take care of making the default elements compatible with Twitter Bootstrap.
+In most cases you will create form elements just like you would with CakePHP's default FormHelper, Cherry's FormHelper will take care of making the default elements compatible with Twitter Bootstrap.
