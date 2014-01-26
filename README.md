@@ -20,7 +20,7 @@ The master branch has the following requirements:
 
 ### Install as Git submodule
 
-You can replace step 1 above with the following to add Cherry to your CakePHP project as a submodule
+You can replace Step 1 above with the following to add Cherry to your CakePHP project as a submodule
 
 ```
 $ cd /path/to/CakePHP/project/
