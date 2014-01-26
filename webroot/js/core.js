@@ -3,22 +3,25 @@ var modal = function(args) {
 		args = {};
 	}
 	if (typeof(args.modalTitle) === 'undefined') {
-		args.modalTitle = 'Modal Title';
+		args.modalTitle = 'The page at ' + document.location.hostname + ' says:';
 	}
 	if (typeof(args.iframe) !== 'undefined') {
-		args.body = $('<iframe>', {'width': '100%', 'height': '300', 'frameborder': '0', 'allowtransparency': true, 'src': args.iframe});
+		args.modalBody = $('<iframe>', {'width': '100%', 'height': '300', 'frameborder': '0', 'allowtransparency': true, 'src': args.iframe});
 	}
 	if (typeof(args.modalBody) === 'undefined') {
-		args.modalBody = 'Modal Body';
+		args.modalBody = 'undefined';
+	}
+	if (typeof(args.modalBody) === 'boolean' && args.modalBody === false) {
+		args.modalBody = 'false';
 	}
 	if (typeof(args.cancelTitle) === 'undefined') {
-		args.cancelTitle = 'Cancel';
+		args.cancelTitle = false;
 	}
 	if (typeof(args.cancelClass) === 'undefined') {
 		args.cancelClass = 'btn btn-default';
 	}
 	if (typeof(args.confirmTitle) === 'undefined') {
-		args.confirmTitle = 'OK';
+		args.confirmTitle = false;
 	}
 	if (typeof(args.confirmClass) === 'undefined') {
 		args.confirmClass = 'btn btn-success';
@@ -26,7 +29,11 @@ var modal = function(args) {
 	if (typeof(args.confirmCallback) === 'undefined') {
 		args.confirmCallback = function() {};
 	}
+	if (typeof(args.cancelCallback) === 'undefined') {
+		args.cancelCallback = function() {};
+	}
 
+	var confirmed = false;
 	var $modal = $('<div>', {'class': 'modal fade', 'id': 'myModal', 'tabindex': '-1', 'role': 'dialog', 'aria-labelledby': 'myModalLabel', 'aria-hidden': 'true'});
 
 	var $modalDialog = $('<div>', {'class': 'modal-dialog'});
@@ -44,11 +51,13 @@ var modal = function(args) {
 	var $modalTitle = $('<h4>', {'class': 'modal-title', 'id': 'myModalLabel', 'html': args.modalTitle});
 	$modalHeader.append($modalTitle);
 
-	var $modalBody = $('<div>', {'class': 'modal-body container', 'html': args.modalBody});
+	var $modalBody = $('<div>', {'class': 'modal-body', 'html': args.modalBody});
 	$modalContent.append($modalBody);
 
-	var $modalFooter = $('<div>', {'class': 'modal-footer'});
-	$modalContent.append($modalFooter);
+	if (args.cancelTitle !== false || args.confirmTitle !== false) {
+		var $modalFooter = $('<div>', {'class': 'modal-footer'});
+		$modalContent.append($modalFooter);
+	}
 
 	if (args.cancelTitle !== false) {
 		var $cancelButton = $('<button>', {'type': 'button', 'class': args.cancelClass, 'data-dismiss': 'modal', 'html': args.cancelTitle});
@@ -60,7 +69,7 @@ var modal = function(args) {
 		$modalFooter.append($confirmButton);
 		$confirmButton.on('click', function(event) {
 			event.preventDefault();
-			args.confirmCallback();
+			confirmed = true;
 			$modal.modal('hide');
 		});
 	}
@@ -71,9 +80,48 @@ var modal = function(args) {
 		var $that = $(this);
 		$that.removeData('modal');
 		$that.remove();
+		if (confirmed) {
+			args.confirmCallback(confirmed);
+		} else {
+			args.cancelCallback(confirmed);
+		}
 	});
 
 	return $modal;
+};
+
+var alertModal = function(args) {
+	if (typeof(args) === 'string') {
+		args = {
+			modalBody: args
+		};
+	}
+	if (typeof(args.confirmTitle) === 'undefined') {
+		args.confirmTitle = 'OK';
+	}
+	modal(args);
+};
+
+var confirmModal = function(args, callback) {
+	var inputArgs = args;
+	if (typeof(inputArgs) !== 'object') {
+		args = {
+			modalBody: inputArgs
+		};
+	} else {
+		args = inputArgs
+	}
+	if (typeof(callback) !== 'undefined') {
+		args.confirmCallback = callback;
+		args.cancelCallback = callback;
+	}
+	if (typeof(args.cancelTitle) === 'undefined') {
+		args.cancelTitle = 'Cancel';
+	}
+	if (typeof(args.confirmTitle) === 'undefined') {
+		args.confirmTitle = 'OK';
+	}
+	modal(args);
 };
 
 $(function() {

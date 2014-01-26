@@ -299,7 +299,7 @@
 			$url = '#';
 			$onClick = 'document.' . $formName . '.submit();';
 			if ($confirmMessage) {
-				$options['onclick'] = "modal({'modalTitle': '{$modalTitle}', 'modalBody': '{$confirmMessage}', 'confirmTitle': '{$confirmTitle}', 'confirmClass': '{$confirmClass}', 'confirmCallback': function() {{$onClick}}});";
+				$options['onclick'] = "confirmModal({'modalTitle': '{$modalTitle}', 'modalBody': '{$confirmMessage}', 'confirmTitle': '{$confirmTitle}', 'confirmClass': '{$confirmClass}', 'confirmCallback': function() {{$onClick}}});";
 			} else {
 				$options['onclick'] = $onClick;
 			}
