@@ -5,8 +5,8 @@
 	class CherryFormHelper extends FormHelper {
 
 		public $cherry = false;
-		private $labelCol = 4;
-		private $inputCol = 8;
+		private $labelCol = 3;
+		private $inputCol = 9;
 
 		public function create($model = null, $options = array()) {
 
