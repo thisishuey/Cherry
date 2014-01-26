@@ -12,8 +12,7 @@
 			echo $this->Html->css(array(
 				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css',
 				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css',
-				'/cherry/css/core',
-				'default'
+				'/cherry/css/core'
 			));
 			echo $this->fetch('meta');
 			echo $this->fetch('css');
@@ -68,8 +67,7 @@
 			echo $this->Html->script(array(
 				'//code.jquery.com/jquery-1.11.0.min.js',
 				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js',
-				'/cherry/js/core',
-				'default',
+				'/cherry/js/core'
 			));
 			echo $this->fetch('script');
 		?>

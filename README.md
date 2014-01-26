@@ -15,8 +15,7 @@ The master branch has the following requirements:
 * Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::load('Cherry');`
 * Include the form helper in your `AppController.php`:
    * `public $helpers = array('Form' => array('className' => 'Cherry.CherryForm'));`
-* Copy the `app/Plugin/Cherry/View/Layouts/default.ctp` file over your current 'default.ctp' file to gain access to bootstrap in your views
-* Add `default.css` and `default.js` to the appropriate folders, this is where you will store project specific css and js
+* Copy the `app/Plugin/Cherry/View/Layouts/default.ctp` file over your current `default.ctp` file to gain access to bootstrap in your views
 * Modify `default.ctp` and any of your views to take advantage of Twitter Bootstrap's functionality
 
 # Documentation
