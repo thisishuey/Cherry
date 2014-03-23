@@ -10,8 +10,8 @@
 			echo $this->Html->meta('icon');
 			echo $this->Html->meta(array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1.0, user-scalable=no'));
 			echo $this->Html->css(array(
-				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css',
-				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css',
+				'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
+				'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css',
 				'/cherry/css/core'
 			));
 			echo $this->fetch('meta');
@@ -66,7 +66,7 @@
 		<?php
 			echo $this->Html->script(array(
 				'//code.jquery.com/jquery-1.11.0.min.js',
-				'//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js',
+				'//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
 				'/cherry/js/core'
 			));
 			echo $this->fetch('script');
