@@ -14,7 +14,7 @@ The master branch has the following requirements:
 1. Clone/Copy the files in this directory into `app/Plugin/Cherry`.
 2. Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::load('Cherry');`.
 3. Include the form helper in your `AppController.php`:
-	* `public $helpers = array('Form' => array('className' => 'Cherry.CherryForm'));`
+	* `public $helpers = array('Form' => array('className' => 'Cherry.CherryForm', 'Html' => array('className' => 'Cherry.CherryHtml'),));`
 4. Copy the `app/Plugin/Cherry/View/Layouts/default.ctp` file over your current `default.ctp` file to gain access to Bootstrap in your views.
 5. Modify `default.ctp` and any of your views to take advantage of Bootstrap's functionality.
 
