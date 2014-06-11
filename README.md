@@ -46,8 +46,17 @@ To change a form from a regular CakePHP form to a Bootstrap form all you need to
 You can also utilize Bootstrap's build in form classes by passing them in the FormHelper `create` method instead.
 
 * For example: `<?php echo $this->Form->create('User', array('cherry' => 'form-horizontal')); ?>`
-
+ 
 In most cases you will create form elements just like you would with CakePHP's default FormHelper, Cherry's FormHelper will take care of making the default elements compatible with Bootstrap.
+
+### Cherry Html Helper
+
+The CherryHtmlHelper was built to take advantage of Bootstrap's element classes. 
+
+To add the class 'img-responsive' to images loaded with the CakePHP Image Helper all you need to do is add `'cherry' = true` to the Image helper options array
+
+* For example: `<?php echo $this->Html->image('image.jpg', array('cherry' => true)); ?>`
+
 
 ## Bootstrap Modal Functions
 
