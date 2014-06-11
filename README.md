@@ -49,7 +49,7 @@ You can also utilize Bootstrap's build in form classes by passing them in the Fo
  
 In most cases you will create form elements just like you would with CakePHP's default FormHelper, Cherry's FormHelper will take care of making the default elements compatible with Bootstrap.
 
-### Cherry Html Helper
+## Cherry Html Helper
 
 The CherryHtmlHelper was built to take advantage of Bootstrap's element classes. 
 
