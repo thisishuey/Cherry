@@ -810,10 +810,10 @@ class CherryHtmlHelper extends AppHelper {
 		}
 
 		//Add Responsive Class
-		if(isset($options['responsive'])){
-			if ($options['responsive'] === true && !isset($options['class'])) {
+		if(isset($options['cherry'])){
+			if ($options['cherry'] === true && !isset($options['class'])) {
 				$options['class'] = 'img-responsive';
-			} else if ($options['responsive'] === true && isset($options['class'])){
+			} else if ($options['cherry'] === true && isset($options['class'])){
 				$options['class'] = $options['class'] . ' img-responsive';
 			}
 		}
