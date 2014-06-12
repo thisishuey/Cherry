@@ -14,7 +14,7 @@ The master branch has the following requirements:
 1. Clone/Copy the files in this directory into `app/Plugin/Cherry`.
 2. Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::load('Cherry');`.
 3. Include the form helper in your `AppController.php`:
-	* `public $helpers = array('Form' => array('className' => 'Cherry.CherryForm'));`
+	* `public $helpers = array('Form' => array('className' => 'Cherry.CherryForm', 'Html' => array('className' => 'Cherry.CherryHtml'),));`
 4. Copy the `app/Plugin/Cherry/View/Layouts/default.ctp` file over your current `default.ctp` file to gain access to Bootstrap in your views.
 5. Modify `default.ctp` and any of your views to take advantage of Bootstrap's functionality.
 
@@ -46,8 +46,17 @@ To change a form from a regular CakePHP form to a Bootstrap form all you need to
 You can also utilize Bootstrap's build in form classes by passing them in the FormHelper `create` method instead.
 
 * For example: `<?php echo $this->Form->create('User', array('cherry' => 'form-horizontal')); ?>`
-
+ 
 In most cases you will create form elements just like you would with CakePHP's default FormHelper, Cherry's FormHelper will take care of making the default elements compatible with Bootstrap.
+
+## Cherry Html Helper
+
+The CherryHtmlHelper was built to take advantage of Bootstrap's element classes. 
+
+To add the class 'img-responsive' to images loaded with the CakePHP Image Helper all you need to do is add `'cherry' = true` to the Image helper options array
+
+* For example: `<?php echo $this->Html->image('image.jpg', array('cherry' => true)); ?>`
+
 
 ## Bootstrap Modal Functions
 
